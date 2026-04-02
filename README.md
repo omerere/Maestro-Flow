@@ -64,7 +64,6 @@ The application is fully containerized for a zero-setup experience.
    ~~~bash
    docker run -p 8000:8000 maestro-flow-app
    ~~~
-*Once running, access the interactive API documentation at: [http://localhost:8000/docs](http://localhost:8000/docs)*
 
 ### Option 2: Run Locally
 Ensure you have Python 3.10+ installed.
@@ -78,6 +77,7 @@ Ensure you have Python 3.10+ installed.
    python -m uvicorn app.main:app --host 0.0.0.0 --port 8000
    ~~~
 
+ **Access the API Documentation (Swagger):** Once running, open your browser at: **[http://localhost:8000/docs](http://localhost:8000/docs)** *(Note: The terminal will also display this direct link upon successful startup).*
 ## API Endpoints
 
 The system fulfills all delivery requirements via the following REST endpoints:
