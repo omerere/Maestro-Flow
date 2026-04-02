@@ -27,6 +27,20 @@ from app.core.engine import (
 from app.core.flow_config import FLOW_STEPS, FLOW_TASKS
 from app.core.store import UserNotFoundError
 
+@asynccontextmanager
+async def lifespan(app: FastAPI):
+    """
+    Handles application startup and shutdown events.
+    
+    Prints a clear, entry point URL for developers 
+    running the application locally or via Docker.
+    """
+    print("\n" + "="*60)
+    print("🚀 Maestro-Flow Engine is Live!")
+    print("📝 Interactive API Documentation: http://localhost:8000/docs")
+    print("="*60 + "\n")
+    yield
+
 # ---------------------------------------------------------------------------
 # Application instantiation
 # ---------------------------------------------------------------------------
@@ -35,6 +49,7 @@ app = FastAPI(
     title="Maestro-Flow",
     description="Dynamic workflow engine for the Masterschool admissions system.",
     version="1.0.0",
+    lifespan=lifespan
 )
 
 # ---------------------------------------------------------------------------
@@ -92,21 +107,3 @@ app.include_router(api_router)
 def redirect_to_docs():
     return RedirectResponse(url="/docs")
 
-@asynccontextmanager
-async def lifespan(app: FastAPI):
-    """
-    Handles application startup and shutdown events.
-    
-    Prints a clear, entry point URL for developers 
-    running the application locally or via Docker.
-    """
-    print("\n" + "="*60)
-    print("🚀 Maestro-Flow Engine is Live!")
-    print("📝 Interactive API Documentation: http://localhost:8000/docs")
-    print("="*60 + "\n")
-    yield
-
-app = FastAPI(
-    title="Maestro-Flow",
-    lifespan=lifespan
-)
