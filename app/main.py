@@ -35,10 +35,10 @@ async def lifespan(app: FastAPI):
     Prints a clear, entry point URL for developers 
     running the application locally or via Docker.
     """
-    print("\n" + "="*60)
-    print("🚀 Maestro-Flow Engine is Live!")
-    print("📝 Interactive API Documentation: http://localhost:8000/docs")
-    print("="*60 + "\n")
+    print("\n" + "="*60, flush=True)
+    print("🚀 Maestro-Flow Engine is Live!", flush=True)
+    print("📝 Interactive API Documentation: http://localhost:8000/docs", flush=True)
+    print("="*60 + "\n", flush=True)
     yield
 
 # ---------------------------------------------------------------------------
