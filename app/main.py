@@ -15,6 +15,7 @@ Run with:
 
 from fastapi import FastAPI, Request
 from fastapi.responses import JSONResponse, RedirectResponse
+from contextlib import asynccontextmanager
 
 from app.api.endpoints import router as api_router
 from app.core.engine import (
@@ -82,7 +83,7 @@ async def workflow_engine_error_handler(
 
 
 # ---------------------------------------------------------------------------
-# Router registration
+# Router 
 # ---------------------------------------------------------------------------
 
 app.include_router(api_router)
@@ -90,3 +91,22 @@ app.include_router(api_router)
 @app.get("/", include_in_schema=False)
 def redirect_to_docs():
     return RedirectResponse(url="/docs")
+
+@asynccontextmanager
+async def lifespan(app: FastAPI):
+    """
+    Handles application startup and shutdown events.
+    
+    Prints a clear, entry point URL for developers 
+    running the application locally or via Docker.
+    """
+    print("\n" + "="*60)
+    print("🚀 Maestro-Flow Engine is Live!")
+    print("📝 Interactive API Documentation: http://localhost:8000/docs")
+    print("="*60 + "\n")
+    yield
+
+app = FastAPI(
+    title="Maestro-Flow",
+    lifespan=lifespan
+)

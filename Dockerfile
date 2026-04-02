@@ -16,5 +16,4 @@ COPY ./app ./app
 # Expose the port the FastAPI server will run on
 EXPOSE 8000
 
-# Print a friendly message and then start the server
-CMD ["sh", "-c", "echo '🚀 Application is starting! Access the docs at http://localhost:8000/docs' && uvicorn app.main:app --host 0.0.0.0 --port 8000"]
+CMD ["python", "-m", "uvicorn", "app.main:app", "--host", "0.0.0.0", "--port", "8000"]
