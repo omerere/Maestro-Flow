@@ -2,7 +2,7 @@
 
 A configuration-driven workflow orchestrator built with **FastAPI** and **Pydantic**. Designed to handle complex, multi-step user journeys with flexible routing and automated status resolutions.
 
-## 🏗️ System Architecture
+## System Architecture
 
 The project is structured to enforce a strict separation of concerns, ensuring scalability and maintainability. Here is the complete breakdown of the system files and directories:
 
